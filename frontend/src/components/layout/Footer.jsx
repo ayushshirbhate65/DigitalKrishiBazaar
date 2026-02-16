@@ -3,61 +3,69 @@ import "../../styles/footer.css";
 function Footer() {
   return (
     <footer className="footer" id="about-section">
-      <div className="footer-container">
+  <div className="footer-container">
 
-        {/* LEFT: EXPLORE */}
-        <div className="footer-section">
-          <h3>Explore</h3>
-          <p className="footer-desc">
-            Discover amazing products with exclusive offers today!
-          </p>
+    {/* LEFT */}
+    <div className="footer-section">
+      <h3>Explore</h3>
 
-          <ul className="footer-links">
-            <li>Home</li>
-            <li>About Us</li>
-            <li>Our Services</li>
-            <li>Products</li>
-            <li>Contact Us</li>
-            <li>Legal & Policy</li>
-            <li>FAQ</li>
-          </ul>
-        </div>
+      <ul className="footer-links">
+        <li><a href="/">Home</a></li>
+        <li><a href="/about">About Us</a></li>
+        <li><a href="/services">Our Services</a></li>
+        <li><a href="/products">Products</a></li>
+        <li><a href="/contact">Contact</a></li>
+        <li><a href="/faq">FAQ</a></li>
+      </ul>
+    </div>
 
-        {/* MIDDLE: CONTACT */}
-        <div className="footer-section">
-          <h3>Contact</h3>
-          <p>support@digitalkrishi.com</p>
-          <p>+91 9XXXXXXXXX</p>
+    {/* MIDDLE */}
+    <div className="footer-section">
+      <h3>Contact</h3>
+      <p>support@digitalkrishi.com</p>
+      <p>+91 9XXXXXXXXX</p>
 
-          <div className="social-icons">
-            <span>🌐</span>
-            <span>📸</span>
-            <span>in</span>
-            <span>✖</span>
-          </div>
-        </div>
+      <div className="social-icons">
+  <a href="https://ayushshirbhate.site/" target="_blank" rel="noopener noreferrer">
+    🌐
+  </a>
 
-        {/* RIGHT: REVIEW / SUBSCRIBE */}
-        <div className="footer-section">
-          <h3 className="review-title">GIVE US A REVIEW!!</h3>
+  <a href="https://www.instagram.com/ayushshirbhate19" target="_blank" rel="noopener noreferrer">
+    📸
+  </a>
 
-          <input
-            type="email"
-            placeholder="Your email for updates"
-            className="footer-input"
-          />
+  <a href="https://www.linkedin.com/in/ayush-shirbhate-a2455429a/" target="_blank" rel="noopener noreferrer">
+    in
+  </a>
 
-          <button className="footer-btn">
-            Subscribe for updates
-          </button>
-        </div>
+  <a href="https://twitter.com/yourprofile" target="_blank" rel="noopener noreferrer">
+    ✖
+  </a>
+</div>
+    </div>
 
+    {/* RIGHT */}
+    <div className="footer-section">
+      <h3>Subscribe</h3>
+
+      <div className="subscribe-box">
+        <input
+          type="email"
+          placeholder="Your email"
+          className="footer-input"
+        />
+        <button className="footer-btn">
+          Subscribe
+        </button>
       </div>
+    </div>
 
-      <div className="footer-bottom">
-        © 2026 Digital Krishi Bazaar. All rights reserved.
-      </div>
-    </footer>
+  </div>
+
+  <div className="footer-bottom">
+    © 2026 Digital Krishi Bazaar. All rights reserved.
+  </div>
+</footer>
   );
 }
 

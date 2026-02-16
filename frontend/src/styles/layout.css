@@ -1,3 +1,7 @@
+/* ══════════════════════════════════════
+   LAYOUT
+   ══════════════════════════════════════ */
+
 .layout {
   display: flex;
   min-height: 90vh;
@@ -8,88 +12,135 @@
   padding: 20px;
 }
 
-
-
+/* ══════════════════════════════════════
+   NAVBAR
+   ══════════════════════════════════════ */
 
 .navbar {
   position: sticky;
   top: 0;
-  z-index: 100;
-  background: white;
+  z-index: 1000;
+  background: #ffffff;
   display: flex;
   align-items: center;
   justify-content: space-between;
-  padding: 14px 40px;
-  box-shadow: 0 2px 8px rgba(0,0,0,0.06);
+  padding: 0 40px;
+  height: 70px;
+  box-shadow: 0 1px 12px rgba(0, 0, 0, 0.06);
+  border-bottom: 1px solid #f0f0f0;
 }
 
+/* ── Logo ── */
 .logo {
   font-size: 22px;
-  font-weight: 700;
-  color: #4f46e5;
-}
-
-.navbar-center a {
-  margin: 0 16px;
-  font-weight: 500;
-  color: #374151;
-}
-
-.navbar-center a:hover {
-  color: #4f46e5;
-}
-
-.navbar-right {
-  display: flex;
-  align-items: center;
-  gap: 18px;
-}
-
-.icon-btn {
-  font-size: 20px;
-}
-
-.login-btn {
-  padding: 8px 16px;
-  background: #4f46e5;
-  color: white;
-  border-radius: 6px;
-}
-
-.user-menu {
+  font-weight: 800;
+  color: #16a34a;
+  letter-spacing: -0.5px;
   display: flex;
   align-items: center;
   gap: 8px;
+  transition: color 0.3s ease;
+  white-space: nowrap;
 }
 
-.user-menu button {
-  background: transparent;
-  color: #ef4444;
+.logo:hover {
+  color: #15803d;
 }
 
+/* ── Center Links ── */
+.navbar-center {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
 
+.navbar-center a {
+  padding: 8px 16px;
+  font-weight: 500;
+  font-size: 14px;
+  color: #4b5563;
+  border-radius: 8px;
+  transition: all 0.25s ease;
+  white-space: nowrap;
+}
 
-/* ===== USER DROPDOWN ===== */
+.navbar-center a:hover {
+  color: #16a34a;
+  background: #f0fdf4;
+}
+
+/* ── Right Section ── */
+.navbar-right {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+}
+
+/* ── Cart Icon ── */
+.cart-icon {
+  font-size: 22px;
+  color: #4b5563;
+  margin-right: 8px;
+  transition: all 0.3s ease;
+  display: flex;
+  align-items: center;
+  padding: 8px;
+  border-radius: 10px;
+}
+
+.cart-icon:hover {
+  color: #16a34a;
+  background: #f0fdf4;
+}
+
+/* ── Login Button ── */
+.login-btn {
+  padding: 10px 22px;
+  background: linear-gradient(135deg, #16a34a, #15803d);
+  color: #ffffff;
+  border-radius: 10px;
+  font-weight: 600;
+  font-size: 14px;
+  transition: all 0.3s ease;
+  border: none;
+  display: inline-block;
+}
+
+.login-btn:hover {
+  transform: translateY(-1px);
+  box-shadow: 0 4px 15px rgba(22, 163, 74, 0.3);
+}
+
+/* ══════════════════════════════════════
+   USER DROPDOWN
+   ══════════════════════════════════════ */
+
 .user-dropdown {
   position: relative;
   cursor: pointer;
 }
 
 .user-icon {
-  font-size: 28px;
-  /* color: #fff; */
+  font-size: 30px;
+  color: #4b5563;
+  transition: color 0.3s ease;
 }
 
-/* Dropdown hidden by default */
+.user-dropdown:hover .user-icon {
+  color: #16a34a;
+}
+
+/* Dropdown Menu */
 .dropdown-menu {
   position: absolute;
-  top: 40px;
+  top: 48px;
   right: 0;
-  width: 220px;
-  background: white;
-  border-radius: 12px;
-  padding: 16px;
-  box-shadow: 0 12px 30px rgba(0, 0, 0, 0.2);
+  width: 240px;
+  background: #ffffff;
+  border-radius: 14px;
+  padding: 20px;
+  box-shadow: 0 15px 40px rgba(0, 0, 0, 0.12);
+  border: 1px solid #f0f0f0;
   opacity: 0;
   visibility: hidden;
   transform: translateY(10px);
@@ -97,58 +148,113 @@
   z-index: 1000;
 }
 
-/* Show on hover */
 .user-dropdown:hover .dropdown-menu {
   opacity: 1;
   visibility: visible;
   transform: translateY(0);
 }
 
-/* User info */
+/* Arrow */
+.dropdown-menu::before {
+  content: "";
+  position: absolute;
+  top: -8px;
+  right: 16px;
+  width: 16px;
+  height: 16px;
+  background: #ffffff;
+  border-left: 1px solid #f0f0f0;
+  border-top: 1px solid #f0f0f0;
+  transform: rotate(45deg);
+}
+
+/* User Info */
 .user-name {
   font-weight: 700;
   font-size: 16px;
-  color: #111827;
+  color: #1a1a1a;
+  margin: 0;
 }
 
 .user-email {
   font-size: 13px;
   color: #6b7280;
-  margin-bottom: 12px;
+  margin: 2px 0 14px;
+  word-break: break-all;
 }
 
-/* Links & buttons */
+/* Links */
 .dropdown-link {
   display: block;
-  padding: 8px 0;
+  padding: 10px 12px;
   font-weight: 600;
-  color: #2563eb;
+  font-size: 14px;
+  color: #374151;
   text-decoration: none;
+  border-radius: 8px;
+  transition: all 0.2s ease;
 }
 
 .dropdown-link:hover {
-  text-decoration: underline;
+  background: #f0fdf4;
+  color: #16a34a;
 }
 
+/* Logout */
 .logout-btn {
   width: 100%;
-  margin-top: 10px;
-  padding: 8px;
-  background: #ef4444;
-  /* color: white; */
-  border: none;
-  border-radius: 8px;
+  margin-top: 12px;
+  padding: 10px;
+  background: #fef2f2;
+  color: #ef4444;
+  border: 1px solid #fecaca;
+  border-radius: 10px;
   cursor: pointer;
   font-weight: 600;
+  font-size: 14px;
+  transition: all 0.3s ease;
 }
 
 .logout-btn:hover {
-  background: #dc2626;
+  background: #ef4444;
+  color: #ffffff;
+  border-color: #ef4444;
 }
 
-/* Cart spacing */
-.cart-icon {
-  margin-right: 20px;
-  font-size: 22px;
-  /* color: #fff; */
+/* ══════════════════════════════════════
+   NAVBAR RESPONSIVE
+   ══════════════════════════════════════ */
+
+@media (max-width: 1024px) {
+  .navbar {
+    padding: 0 20px;
+  }
+
+  .navbar-center a {
+    padding: 6px 10px;
+    font-size: 13px;
+  }
+}
+
+@media (max-width: 768px) {
+  .navbar {
+    flex-wrap: wrap;
+    height: auto;
+    padding: 14px 16px;
+    gap: 10px;
+  }
+
+  .navbar-center {
+    order: 3;
+    width: 100%;
+    flex-wrap: wrap;
+    gap: 4px;
+    padding-top: 10px;
+    border-top: 1px solid #f0f0f0;
+  }
+
+  .navbar-center a {
+    font-size: 13px;
+    padding: 6px 12px;
+  }
 }

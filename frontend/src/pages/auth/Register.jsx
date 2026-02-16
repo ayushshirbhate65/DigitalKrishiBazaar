@@ -1,17 +1,28 @@
 import { useState, useEffect } from "react"
 import { Link, useNavigate } from "react-router-dom"
 import api from "../../services/api"
+import {
+  FaUser,
+  FaEnvelope,
+  FaLock,
+  FaPhone,
+  FaMapMarkerAlt,
+  FaVenusMars,
+  FaCalendarAlt,
+  FaGlobeAsia,
+  FaBuilding,
+  FaUserPlus,
+  FaSeedling
+} from "react-icons/fa"
 import "../../styles/auth.css"
 
 const Register = () => {
   const navigate = useNavigate()
   const [error, setError] = useState("")
 
-  // 🌍 State & Division lists
   const [states, setStates] = useState([])
   const [divisions, setDivisions] = useState([])
 
-  // 📋 Form data
   const [form, setForm] = useState({
     name: "",
     email: "",
@@ -19,38 +30,24 @@ const Register = () => {
     mobile: "",
     address: "",
     stateId: "",
-    divisionId: "", 
+    divisionId: "",
     gender: "",
-    dob : ""
+    dob: ""
   })
 
-  /* ======================
-     LOAD STATES ON PAGE LOAD
-     ====================== */
   useEffect(() => {
     api.get("/states")
       .then(res => setStates(res.data))
       .catch(err => console.error("Failed to load states", err))
   }, [])
 
-  /* ======================
-     HANDLE INPUT CHANGE
-     ====================== */
   const handleChange = (e) => {
     setForm({ ...form, [e.target.name]: e.target.value })
   }
 
-  /* ======================
-     HANDLE STATE CHANGE
-     ====================== */
   const handleStateChange = async (e) => {
     const stateId = e.target.value
-
-    setForm({
-      ...form,
-      stateId: stateId,
-      divisionId: ""
-    })
+    setForm({ ...form, stateId: stateId, divisionId: "" })
 
     if (stateId) {
       try {
@@ -64,9 +61,6 @@ const Register = () => {
     }
   }
 
-  /* ======================
-     HANDLE SUBMIT
-     ====================== */
   const handleSubmit = async (e) => {
     e.preventDefault()
     setError("")
@@ -99,101 +93,160 @@ const Register = () => {
 
   return (
     <div className="auth-container">
-      <div className="auth-card">
-        <h2>Create Account</h2>
+      <div className="auth-card register-card">
 
-        {error && <div className="error">{error}</div>}
+        {/* ── Header ── */}
+        <div className="auth-header">
+          <div className="auth-logo">
+            <FaSeedling />
+          </div>
+          <h2>Create Account</h2>
+          <p>Join us and start your journey</p>
+        </div>
 
+        {/* ── Error ── */}
+        {error && (
+          <div className="error">
+            <span>⚠️</span> {error}
+          </div>
+        )}
+
+        {/* ── Form ── */}
         <form onSubmit={handleSubmit}>
-          <input
-            name="name"
-            placeholder="Full Name"
-            value={form.name}
-            onChange={handleChange}
-          />
 
-          <input
-            name="email"
-            type="email"
-            placeholder="Email"
-            value={form.email}
-            onChange={handleChange}
-          />
+          {/* ── Personal Info ── */}
+          <div className="form-section-label">Personal Information</div>
 
-          <input
-            name="password"
-            type="password"
-            placeholder="Password"
-            value={form.password}
-            onChange={handleChange}
-          />
+          <div className="input-group">
+            <FaUser className="input-icon" />
+            <input
+              name="name"
+              placeholder="Full Name"
+              value={form.name}
+              onChange={handleChange}
+            />
+          </div>
 
-         <select
-          name="gender"
-          value={form.gender}
-          onChange={handleChange}
-        >
-          <option value="" disabled>Select Gender</option>
-          <option value="male">Male</option>
-          <option value="female">Female</option>
-          <option value="other">Other</option>
-        </select>
+          <div className="input-row">
+            <div className="input-group">
+              <FaVenusMars className="input-icon" />
+              <select
+                name="gender"
+                value={form.gender}
+                onChange={handleChange}
+              >
+                <option value="" disabled>Select Gender</option>
+                <option value="male">Male</option>
+                <option value="female">Female</option>
+                <option value="other">Other</option>
+              </select>
+            </div>
 
+            <div className="input-group">
+              <FaCalendarAlt className="input-icon" />
+              <input
+                name="dob"
+                type="date"
+                placeholder="Date of Birth"
+                value={form.dob}
+                onChange={handleChange}
+              />
+            </div>
+          </div>
 
-          <input
-            name="dob"
-            placeholder="dob"
-            type = "date"
-            value={form.dob}
-            onChange={handleChange}
-          />
+          {/* ── Contact Details ── */}
+          <div className="form-section-label">Contact Details</div>
 
-          <input
-            name="mobile"
-            placeholder="Mobile Number"
-            value={form.mobile}
-            onChange={handleChange}
-          />
+          <div className="input-group">
+            <FaEnvelope className="input-icon" />
+            <input
+              name="email"
+              type="email"
+              placeholder="Email Address"
+              value={form.email}
+              onChange={handleChange}
+            />
+          </div>
 
-          {/* 🌍 STATE DROPDOWN */}
-          <select
-            name="stateId"
-            value={form.stateId}
-            onChange={handleStateChange}
-          >
-            <option value="">Select State</option>
-            {states.map(state => (
-              <option key={state.stateId} value={state.stateId}>
-                {state.stateName}
-              </option>
-            ))}
-          </select>
+          <div className="input-row">
+            <div className="input-group">
+              <FaLock className="input-icon" />
+              <input
+                name="password"
+                type="password"
+                placeholder="Password"
+                value={form.password}
+                onChange={handleChange}
+              />
+            </div>
 
-          {/* 🏙️ DIVISION DROPDOWN */}
-          <select
-            name="divisionId"
-            value={form.divisionId}
-            onChange={handleChange}
-            disabled={!form.stateId}
-          >
-            <option value="">Select Division</option>
-            {divisions.map(div => (
-              <option key={div.divisionId} value={div.divisionId}>
-                {div.divisionName}
-              </option>
-            ))}
-          </select>
+            <div className="input-group">
+              <FaPhone className="input-icon" />
+              <input
+                name="mobile"
+                placeholder="Mobile Number"
+                value={form.mobile}
+                onChange={handleChange}
+              />
+            </div>
+          </div>
 
-          <input
-            name="address"
-            placeholder="Address"
-            value={form.address}
-            onChange={handleChange}
-          />
+          {/* ── Location ── */}
+          <div className="form-section-label">Location</div>
 
-          <button className="auth-btn">Register</button>
+          <div className="input-row">
+            <div className="input-group">
+              <FaGlobeAsia className="input-icon" />
+              <select
+                name="stateId"
+                value={form.stateId}
+                onChange={handleStateChange}
+              >
+                <option value="">Select State</option>
+                {states.map(state => (
+                  <option key={state.stateId} value={state.stateId}>
+                    {state.stateName}
+                  </option>
+                ))}
+              </select>
+            </div>
+
+            <div className="input-group">
+              <FaBuilding className="input-icon" />
+              <select
+                name="divisionId"
+                value={form.divisionId}
+                onChange={handleChange}
+                disabled={!form.stateId}
+              >
+                <option value="">Select Division</option>
+                {divisions.map(div => (
+                  <option key={div.divisionId} value={div.divisionId}>
+                    {div.divisionName}
+                  </option>
+                ))}
+              </select>
+            </div>
+          </div>
+
+          <div className="input-group">
+            <FaMapMarkerAlt className="input-icon" />
+            <input
+              name="address"
+              placeholder="Full Address"
+              value={form.address}
+              onChange={handleChange}
+            />
+          </div>
+
+          {/* ── Submit ── */}
+          <button className="auth-btn" type="submit">
+            <FaUserPlus />
+            Register
+          </button>
         </form>
 
+        {/* ── Footer ── */}
         <div className="auth-footer">
           Already have an account? <Link to="/login">Login</Link>
         </div>

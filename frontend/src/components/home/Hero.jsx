@@ -1,7 +1,7 @@
 import { useEffect, useRef, useState } from "react";
 import "../../styles/hero.css";
 
-import banner1 from '../../assets/banners/bg1.jpg'; // Rename files
+import banner1 from '../../assets/banners/bg1.jpg';
 import banner2 from '../../assets/banners/bg2.jpg';
 import banner3 from '../../assets/banners/bg3.jpg';
 import banner4 from '../../assets/banners/bg4.jfif';
@@ -14,11 +14,6 @@ import category2 from '../../assets/categories/fertilizer1.png';
 import category3 from '../../assets/categories/medician1.png';
 import category4 from '../../assets/categories/seed1.png';
 
-
-
-
-
-
 const images = [
   banner1,
   banner2,
@@ -26,18 +21,16 @@ const images = [
   banner4,
 ];
 
-
-
 const categories = [
-  { id: 1, name: "Crop", img:category1 },
+  { id: 1, name: "Crop", img: category1 },
   { id: 3, name: "Fertilizer", img: category2 },
-  { id: 2, name: "Seed", img:  category4},
-  { id: 4, name: "Medicine", img:category3 },
+  { id: 2, name: "Seed", img: category4 },
+  { id: 4, name: "Medicine", img: category3 },
 ];
 
 function Categories() {
   const sliderRef = useRef(null);
-  const navigate = useNavigate(); // ✅ ADD THIS
+  const navigate = useNavigate();
 
   return (
     <div className="hero-section">
@@ -55,7 +48,6 @@ function Categories() {
               </div>
             ))}
           </section>
-
         </div>
       </div>
     </div>
@@ -76,7 +68,6 @@ const Hero = () => {
 
   return (
     <>
-      {/* HERO SLIDER */}
       <section className="hero-slider">
         {images.map((img, index) => (
           <div
@@ -92,7 +83,6 @@ const Hero = () => {
         </div>
       </section>
 
-      {/* CATEGORY SECTION */}
       <section className="category-section" ref={sliderRef}>
         {categories.map(cat => (
           <div
@@ -106,13 +96,12 @@ const Hero = () => {
         ))}
       </section>
 
-      {/* FEATURES */}
       <section className="feature-wrapper">
         <FadeFeature
           image="https://images.unsplash.com/photo-1605000797499-95a51c5269ae"
           texts={[
             "Buy seeds, fertilizers, medicines, sell crops, access loans — all in one platform.",
-            "A single digital marketplace built to simplify every farmer’s journey."
+            "A single digital marketplace built to simplify every farmer's journey."
           ]}
         />
 
